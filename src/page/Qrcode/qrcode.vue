@@ -8,25 +8,8 @@
                 <el-col :span="20">
                     <el-container>
                         <el-header>
-                            <div id="catalog" class="btn-group">
-                                <el-button data-value="" >根目录</el-button>
-                            </div>
-                            <div class="btn-head custom-file-input">
-                                <el-form  class="demo-form-inline">
-                                    <el-button class="btn-head">选择要上传的文件</el-button>
-                                    <el-input class="btn-head file" type="file" placeholder="请输入内容">
-                                    </el-input>
-                                </el-form>
-                            </div>
-                            <div class="btn-group">
-                                <el-button >新建文件夹</el-button>
-                            </div>
+                            bbb
                         </el-header>
-                        <el-main >
-                            <div>
-
-                            </div>
-                        </el-main>
                     </el-container>
                     <el-main></el-main>
                 </el-col>
@@ -40,23 +23,12 @@
     export default {
             data () {
                 return{
-                    fileList:{}
+
                 }
              },
             components:{
                 leftAside
             },
-            created () {
-                this.showFile()
-              },
-             methods: {
-                 showFile(){
-                     let url = '/index/Index/read?path=/'
-                     this.$api.get(url,null,r=>{
-                         this.fileList = r
-                     })
-                 }
-             }
     }
 </script>
 

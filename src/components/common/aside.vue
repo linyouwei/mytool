@@ -1,53 +1,63 @@
 <template>
-    <left-aside class="aside">
-        <div id="doc-aside" class="pull-left">
-            <div id="doc-aside-body" class="row">
-                <div  id="doc-aside-main" class="pull-left">
-                    <div id="doc-aside-main-menu">
-                        <ul class="menu-vertical">
-                            <li>
-                                <a href="/Index/Index/index">
-                                    <span class="glyphicon glyphicon-file"></span>
-                                    <span class="menu-vertical-text">
-                                       目录
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a class="ulite-js-menu ulite-js-ripple-effect">
-                                    <span class="glyphicon glyphicon-briefcase">
-                                    </span>
-                                    <span class="menu-vertical-text">小工具</span>
-                                </a>
-                                <ul class="menu-vertical menu-vertical-child">
-                                    <li>
-                                        <a href="/Index/Json/index">
-                                            <span class="glyphicon glyphicon-asterisk"></span>
-                                            <span>Json格式化 </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/Index/Qrcode/index">
-                                            <span class="glyphicon glyphicon-qrcode"></span>
-                                            <span>二维码 </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="glyphicon glyphicon-link"></span>
-                                            <span>http</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </left-aside>
-</template>
+    <aside class="aside">
+      <!--  <el-collapse accordion>
+            <el-collapse-item  title="目录">
+            </el-collapse-item>
+            <el-collapse-item title="小工具">
+                <div><a href="#">json格式化</a></div>
+                <div><a  href="#">二维码</a></div>
+                <div><a  href="#">http</a></div>
+            </el-collapse-item>
+        </el-collapse>-->
+        <el-row class="tac" >
+            <el-col :span="24">
+                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen"@close="handleClose">
 
+                <router-link to='/' tag='a'><el-submenu index="1">
+                        <template slot="title">
+                           目录
+                        </template>
+                    </el-submenu></router-link>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <span>小工具</span>
+                        </template>
+                        <el-menu-item index="1">
+                            <el-menu-item-group>
+                                <router-link to='/json' tag='a'>
+                                <el-menu-item index="2-1" >
+                                    json格式化
+                                </el-menu-item></router-link>
+                                <router-link to='/qrcode' tag='a'>
+                                <el-menu-item index="2-2">
+                                    二维码
+                                </el-menu-item>
+                                </router-link>
+                                <router-link to='/qrcode' tag='a'>
+                                <el-menu-item index="2-3">
+                                    <!--<router-link to='/http' tag='a'>http</router-link>-->
+                                </el-menu-item>
+                                </router-link>
+                            </el-menu-item-group>
+                        </el-menu-item>
+                    </el-submenu>
+                </el-menu>
+            </el-col>
+        </el-row>
+    </aside>
+</template>
+<script>
+    export default {
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
+    }
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

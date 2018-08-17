@@ -8,7 +8,8 @@
                 <el-col :span="20">
                     <el-container>
                         <el-header>
-                            <div id="catalog" class="btn-group"  v-for="(item, index) in btnList">
+                            <div id="catalog" class="btn-group"  v-for="(item, index) in btnList"
+                                    :key="index">
                                 <el-button  @click="btnShow(index)" >{{item===''||item==='/'?'根目录':item}}</el-button>
                             </div>
                             <div class="btn-head custom-file-input">
@@ -45,13 +46,18 @@
                         </el-header>
                         <el-main >
                             <el-row>
-                                <el-col  :xs="12" :sm="4" :md="4" :lg="2" class="a-dir" v-for="dir in dirList" @click.native="toSubDir(dir)">
+                                <el-col  :xs="12" :sm="4" :md="4" :lg="2" class="a-dir" v-for="(dir,index) of dirList"
+                                         @click.native="toSubDir(dir)"
+                                        :key="index"
+                                                                    >
                                     <a href="#"  >
                                         <img src="../../images/folder.png" alt=""/>
                                         <div class="gallery-title">{{dir}}</div>
                                     </a>
                                </el-col>
-                                 <el-col :xs="12":sm="4" :md="4" :lg="2" class="a-file" v-for="file in fileList" @click.native="bindFile(file)">
+                                 <el-col :xs="12":sm="4" :md="4" :lg="2" class="a-file" v-for="(file,index) of fileList"
+                                    @click.native="bindFile(file)"
+                                    :key="index">
                                     <a href="#"  >
                                         <img v-if="checkFile(file)" src="../../images/txt.png" alt=""/>
                                         <img v-else src="../../images/unknown.png" alt=""/>

@@ -8,7 +8,7 @@
                 <el-col :span="20">
                     <el-container>
                         <el-header>
-                            bbb
+                            <el-button @click="getData">点击上传</el-button>
                         </el-header>
                     </el-container>
                     <el-main></el-main>
@@ -29,6 +29,14 @@
             components:{
                 leftAside
             },
+            methods:{
+                getData(){
+                    this.$http.get('static/china.json').then(res => {
+                        console.log(res.bodyText)//此处的res对象包含了json的文件信息和数据，我们需要的json数据存在于body属性中
+
+                })
+                }
+            }
     }
 </script>
 

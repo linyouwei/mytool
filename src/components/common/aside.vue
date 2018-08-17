@@ -11,9 +11,10 @@
         </el-collapse>-->
         <el-row class="tac" >
             <el-col :span="24">
-                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen"@close="handleClose">
+                <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen"@close="handleClose">
 
-                <router-link to='/' tag='a'><el-submenu index="1">
+                <router-link to='/' tag='a'>
+                    <el-submenu index="1">
                         <template slot="title">
                            目录
                         </template>
@@ -24,8 +25,8 @@
                         </template>
                         <el-menu-item index="1">
                             <el-menu-item-group>
-                                <router-link to='/json' tag='a'>
-                                <el-menu-item index="2-1" >
+                                <router-link to='/json' tag='a' >
+                                <el-menu-item index="2-1">
                                     json格式化
                                 </el-menu-item></router-link>
                                 <router-link to='/qrcode' tag='a'>
@@ -33,10 +34,20 @@
                                     二维码
                                 </el-menu-item>
                                 </router-link>
-                                <router-link to='/qrcode' tag='a'>
+                                <router-link to='/table' tag='a'>
                                 <el-menu-item index="2-3">
-                                    <!--<router-link to='/http' tag='a'>http</router-link>-->
+                                    表格
                                 </el-menu-item>
+                                </router-link>
+                                <router-link to='/linkage' tag='a'>
+                                    <el-menu-item index="2-4">
+                                        联动
+                                    </el-menu-item>
+                                </router-link>
+                                <router-link to='/tabletest' tag='a'>
+                                    <el-menu-item index="2-4">
+                                        tabletest
+                                    </el-menu-item>
                                 </router-link>
                             </el-menu-item-group>
                         </el-menu-item>

@@ -7,6 +7,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import api from './api/index.js'
+
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 // 将API方法绑定到全局
 Vue.prototype.$api = api
 

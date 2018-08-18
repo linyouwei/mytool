@@ -11,7 +11,7 @@
                         <div class="page-shopping-cart" id="shopping-cart">
                             <h4 class="cart-title">购物清单</h4>
                             <div class="cart-product-title clearfix">
-                                <div class="td-check fl"><span class="check-span"  :class="{'check-true':isSelectAll}"></span></div>
+                                <div class="td-check fl"><span class="check-span"  :class="{'check-true':isSelectAll}" @click="selectProduct(isSelectAll)"></span></div>
                                 <div class="td-product fl">商品</div>
                                 <div class="td-num fl">数量</div>
                                 <div class="td-price fl">单价(元)</div>
@@ -50,7 +50,7 @@
                                 </table>
                             </div>
                             <div class="cart-product-info">
-                                <a class="delect-product" href="javascript:;"><span></span>删除所选商品</a>
+                                <a class="delect-product" href="javascript:;" @click="deleteProduct"><span></span>删除所选商品</a>
                                 <a class="keep-shopping" href="#"><span></span>继续购物</a>
                                 <a class="btn-buy fr" href="javascript:;">去结算</a>
                                 <p class="fr product-total">￥<span>{{getTotal.totalPrice}}</span></p>
@@ -120,28 +120,79 @@
                 var checkArr =  function(arr){
                     var flag = true
                     for(let i=0;i<arr.length;i++){
-                        if(!arr[i]) flag=false
+                        if(!arr[i].select) flag=false
                     }
                     return flag
                 }
                 return checkArr(this.productList)
 
+
 //               return this.productList.every(function (val) { return val.select})
+            },
+            getTotal:function(){
+                //获取productList中select为true的数据。
+          /*      var _proList=this.productList.filter(function (val) { return val.select}),totalPrice=0;
+                for(var i=0,len=_proList.length;i<len;i++){
+                    //总价累加
+                    totalPrice+=_proList[i].pro_num*_proList[i].pro_price;
+                }
+                console.log(_proList)
+                //选择产品的件数就是_proList.length，总价就是totalPrice
+                return {totalNum:_proList.length,totalPrice:totalPrice}*/
+                var _proList = this.filterSelect(this.productList)
+                var totalPrice = 0
+                for(var i=0,len=_proList.length;i<len;i++){
+                    //总价累加
+                    totalPrice+=_proList[i].pro_num*_proList[i].pro_price;
+                }
+                return {totalNum:_proList.length,totalPrice:totalPrice}
+
+            },
+
+            selectProduct:function(_isSelect){
+                //遍历productList,全部取反
+                for(var i=0;i<this.productList;i++){}
+                    this.productList[i].select = !this.productList[i].select;
             }
+
         },
         mounted(){
             var _this = this;
             this.productList.map(function(item){
                 _this.$set(item,'select',true);
             })
-            console.log(this.productList)
 
         },
     components:{
         leftAside
     },
     methods:{
+        deepClone(obj){
+                let _obj = JSON.stringify(obj),
+                        objClone = JSON.parse(_obj);
+                return objClone
+        },
+        filterSelect(arr){
+//            var _proList2 = arr  不能这么写，这是浅拷贝
+            var _proList2 = this.deepClone(arr)
+            //过滤掉select为false的值
+            for(var i=_proList2.length-1;i>=0;i--){
+                if(!_proList2[i].select) _proList2.splice(i,1)
+            }
+            console.log(this.productList)
+            return _proList2
+        },
+        //删除已经选中(select=true)的产品
+        deleteProduct:function(){
+                this.productList = this.productList.filter(function(val){
+                    return !val.select
+                })
+
         }
+
+
+
+    }
     }
 
 
